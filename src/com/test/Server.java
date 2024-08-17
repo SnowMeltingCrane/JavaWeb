@@ -16,8 +16,8 @@ public class Server {
             int len = 0;
             byte[] buffer = new byte[1024];
             while((len=inputStream.read(buffer))!=-1){
-                System.out.println(new String(buffer,0,len));
-                outputStream.write("收到".getBytes());
+                System.out.println("接收来自客户端的数据："+new String(buffer,0,len));
+                outputStream.write(("已收到长度为"+len+"字节的数据").getBytes());
             }
         }catch (IOException e){
             e.printStackTrace();
