@@ -1,5 +1,6 @@
 package com.test;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -12,21 +13,12 @@ public class Client {
     public static void main(String[] args) {
         try(Socket socket = new Socket("127.0.0.1",8080);
             Scanner in = new Scanner(System.in)){
-            System.out.println("已经连接到服务端");
+            System.out.println("已经连接到服务端,请输入要传输的文件地址");
             OutputStream outputStream = socket.getOutputStream();
-            InputStream inputStream = socket.getInputStream();
-            String str ;
-            while(true){
-                str = in.nextLine();
-                if(str.equals("exit")){
-                    break;
-                }
-                outputStream.write(str.getBytes());
-                int len;
-                byte[] bytes = new byte[1024];
-                len = inputStream.read(bytes);
-                System.out.println(new String(bytes,0,len));
-            }
+            String path = in.nextLine();
+            FileInputStream inputStream = new FileInputStream(path);
+            inputStream.transferTo(outputStream);
+            inputStream.close();
         }catch(IOException e){
             e.printStackTrace();
         }
