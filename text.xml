@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<root>
-  <name>小明</name>
-  <age>10</age>
-    <inner>
-        <test>xxxx</test>
-    </inner>
-</root>
