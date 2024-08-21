@@ -2,14 +2,27 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="TestMapper">
+
+<!--记得和接口映射-->
+<mapper namespace="com.test.mapper.TestMapper">
     <select id="selectAllUser" resultType="User">
         select * from user
     </select>
 
-    <select id="selectById" resultType="User" parameterType="_int">
+    <select id="selectUserById" resultMap="test" >
         select * from user where id = #{id}
     </select>
+
+    <select id="selectUserDetailById" resultType="UserDetail">
+        select * from user_detail where id = #{id}
+    </select>
+
+    <resultMap id="test" type="User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <association property="detail" column="id" select="selectUserDetailById"/>
+    </resultMap>
 
     <select id="selectByIdAndAge" resultType="User">
         select *from user where id = #{id} and age = #{age}
@@ -18,6 +31,5 @@
     <select id="selectUsersByAge" resultType="User">
         select *from user where age >= #{age}
     </select>
-
 
 </mapper>

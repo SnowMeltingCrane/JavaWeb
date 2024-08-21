@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     
@@ -24,6 +25,6 @@
     </environments>
 
     <mappers>
-        <mapper url="file:mappers/TestMapper.xml"/>
+        <mapper resource="com/test/mapper/TestMapper.xml"/>
     </mappers>
 </configuration>
