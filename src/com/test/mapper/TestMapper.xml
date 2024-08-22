@@ -5,8 +5,19 @@
 
 <!--记得和接口映射-->
 <mapper namespace="com.test.mapper.TestMapper">
-    <select id="selectAllUser" resultType="User">
+    <select id="selectAllUser" resultMap="test">
         select * from user
+    </select>
+
+    <resultMap id="test" type="User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <association property="group" column="gid" select="selectGroupById"/>
+    </resultMap>
+
+    <select id="selectGroupById" resultType="Group">
+        select * from `group` where id = #{id}
     </select>
 
     <select id="selectUserById" resultMap="test" >
@@ -17,12 +28,9 @@
         select * from user_detail where id = #{id}
     </select>
 
-    <resultMap id="test" type="User">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="age" property="age"/>
-        <association property="detail" column="id" select="selectUserDetailById"/>
-    </resultMap>
+    <select id="selectBookByUid" resultType="Book">
+        select * from book where uid = #{uid}
+    </select>
 
     <select id="selectByIdAndAge" resultType="User">
         select *from user where id = #{id} and age = #{age}

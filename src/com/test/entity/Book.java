@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Book {
-    private int id;
+    private int bid;
     private String title;
     private String uid;
 }

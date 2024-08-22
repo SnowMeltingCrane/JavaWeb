@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class User {
@@ -12,6 +13,8 @@ public class User {
     private String name;
     private int age;
     private UserDetail detail;
+    private List<Book> books;
+    private Group group;
 }
 
 
