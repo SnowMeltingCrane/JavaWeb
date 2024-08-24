@@ -1,5 +1,6 @@
 package com.test;
 
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -18,6 +19,6 @@ public class MybatisUtils {
     }
 
     public static SqlSession openSession(boolean autoCommit){
-        return factory.openSession(autoCommit);
+        return factory.openSession(ExecutorType.BATCH,autoCommit);
     }
 }
